@@ -1,0 +1,135 @@
+//Laboratorio 3 Dylan Reyes :D
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+// Función para limpiar la pantalla y esperar a que el usuario presione una tecla
+void limpiarPantallaYContinuar() {
+    cout << "\nPresione cualquier tecla para continuar...";
+    getchar(); // Esperar a que el usuario presione una tecla
+    getchar(); // Esperar a que el usuario presione una tecla nuevamente para evitar que se cierre inmediatamente
+    system("cls"); // Limpiar pantalla después de continuar
+}
+
+// Operaciones y Variables
+void operacionesVariables() {
+    system("cls"); // Limpiar pantalla en Windows
+    int num1, num2;
+    cout << "Ingrese el primer numero entero: ";
+    cin >> num1;
+    cout << "Ingrese el segundo numero entero: ";
+    cin >> num2;
+
+    int suma = num1 + num2;
+    int resta = num1 - num2;
+    int multiplicacion = num1 * num2;
+    float division = (num2 != 0) ? (float)num1 / num2 : 0;
+
+    cout << "\n----Resultados de las operaciones----" << endl;
+    cout <<"\n";
+    cout << "Suma: " << suma << endl;
+    cout <<"\n";
+    cout << "Resta: " << resta << endl;
+    cout <<"\n";
+    cout << "Multiplicacion: " << multiplicacion << endl;
+    cout <<"\n";
+    cout << "Division: " << division << endl;
+    cout <<"--------------------------------------";
+
+    limpiarPantallaYContinuar();
+}
+
+// Funciones
+int calcularPotencia(int base, int exponente) {
+    int resultado = 1;
+    for (int i = 0; i < exponente; ++i) {
+        resultado *= base;
+    }
+    return resultado;
+}
+
+// Determinar Numeros Primos
+bool esPrimo(int num) {
+    if (num <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= num; ++i) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Ano Bisiesto
+bool esBisiesto(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int main() {
+    int opcion;
+    do {
+        cout << "\n.-.-.-.-.-.Menu de Opciones.-.-.-.-.-." << endl;
+        cout <<"\n";
+        cout <<"=============================\n";
+        cout << "1. Operaciones y Variables" << endl;
+        cout <<"=============================\n";
+        cout << "2. Calcular Potencia" << endl;
+        cout <<"=============================\n";
+        cout << "3. Determinar si un Numero es Primo" << endl;
+        cout <<"=============================\n";
+        cout << "4. Determinar si un Anio es Bisiesto" << endl;
+        cout <<"=============================\n";
+        cout << "5. Salir" << endl;
+        cout <<"=============================\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        system("cls"); // Limpiar pantalla después de la selección
+
+        switch (opcion) {
+            case 1:
+                operacionesVariables();
+                break;
+            case 2:
+                int base, exponente;
+                cout << "Ingrese la base: ";
+                cin >> base;
+                cout <<"\n";
+                cout << "Ingrese el exponente: ";
+                cin >> exponente;
+                cout <<"\n";
+                cout <<"================================\n";
+                cout << "El resultado de " << base << " elevado a " << exponente << " es: " << calcularPotencia(base, exponente) << endl;
+                limpiarPantallaYContinuar();
+                break;
+            case 3:
+                int num;
+                cout << "Ingrese un numero: ";
+                cin >> num;
+                cout <<"\n";
+                cout <<"================================\n";
+                cout << num << (esPrimo(num) ? " es un numero primo :D" : " no es un numero primo :C") << endl;
+                limpiarPantallaYContinuar();
+                break;
+            case 4:
+                int year;
+                cout << "Ingrese un anio: ";
+                cin >> year;
+                cout <<"\n";
+                cout <<"================================\n";
+                cout << year << (esBisiesto(year) ? " es un anio bisiesto :D" : " no es un anio bisiesto :C") << endl;
+                limpiarPantallaYContinuar();
+                break;
+            case 5:
+                cout << "Saliendo del programa.... ¡Hasta luego!" << endl;
+                break;
+            default:
+                cout << "Opcion no valida. Por favor, seleccione nuevamente >:C" << endl;
+        }
+
+    } while (opcion != 5);
+
+    return 0;
+}
